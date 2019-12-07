@@ -8,20 +8,31 @@ require_once(dirname(__FILE__)."/header.php");
 	}
 	if(isset($_POST['action']) && $_POST['action']=='Login')
 	{
-		$username=$_POST['uname'];
-		$password=$_POST['pwd'];
-		$dbname="blinkcoders_mdd";
+		// $username=$_POST['uname'];
+		// $password=$_POST['pwd'];
+
+		//defensive sql injection
+		$username=stripcslashes(stripcslashes($_POST['uname']));
+		$password=stripcslashes(stripcslashes($_POST['pwd']));
+		// $dbname="blinkcoders_mdd";
+		$dbname="mdd";
 		$server="localhost";
 		$con=mysqli_connect($server,$username,$password,$dbname);
+
+		$username=mysqli_real_escape_string($con,$username);
+		$password=mysqli_real_escape_string($con,$password);
+
 		if($con)
 		{
 			$_SESSION['mdd']['uname']=$username;
 			$_SESSION['mdd']['pass']=$password;
-			if($_POST['uname']=="blinkcoders_mdd_admin")
+			// if($_POST['uname']=="blinkcoders_mdd_admin")
+			if($_POST['uname']=="mdd_admin")
 			{
 				$_SESSION['mdd']['utype']="admin";
 			}
-			else if($_POST['uname']=="blinkcoders_mdd_editor")
+			//else if($_POST['uname']=="blinkcoders_mdd_editor")
+			else if($_POST['uname']=="mdd_editor")
 			{
 				$_SESSION['mdd']['utype']='editor';
 			}
@@ -36,6 +47,7 @@ require_once(dirname(__FILE__)."/header.php");
 		{
 			header('Location:landing-failed.php');
 		}
+		mysqli_close($con);
 	}
 ?>
 <div class="row">
@@ -76,11 +88,11 @@ form
     </div>
     <div class="form-group">        
       <div class="col-sm-10 buttonn">
-        <input type="submit" class="btn btn-default" name="action" value="Login">
+	         <input type="submit" class="btn btn-default" name="action" value="Login">
       </div>
     </div>
 	<div class="col-sm-5 buttonnn">
-	Send a request to admin@mdd.com to get login credentials or report any issues
+		Send a request to admin@mdd.com to get login credentials or report any issues
 	</div>
   </form>
 </div>

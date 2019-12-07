@@ -1,7 +1,8 @@
 <?php
 	if(isset($_SESSION['mdd']))
 	{
-		$con=mysqli_connect('localhost',$_SESSION['mdd']['uname'],$_SESSION['mdd']['pass'],'blinkcoders_mdd');
+		// $con=mysqli_connect('localhost',$_SESSION['mdd']['uname'],$_SESSION['mdd']['pass'],'blinkcoders_mdd');
+		$con=mysqli_connect('localhost',$_SESSION['mdd']['uname'],$_SESSION['mdd']['pass'],'mdd');
 		if($con)
 		{
 		}

@@ -7,7 +7,7 @@ require_once(dirname(__FILE__)."/header.php");
 	</div>
 	<div class="col-md-4 col-sm-12 user-text">
 			Welcome <b><?php echo htmlspecialchars($_SESSION['mdd']['uname']); ?></b>
-			<br>Home Page
+			<br><a href="<?php echo SITE_URL;?>/landing-success.php">Home Page</a>
 			<br><a href="<?php echo SITE_URL;?>/logout.php">Logout</a>
 	</div>
 </div>
