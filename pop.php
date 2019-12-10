@@ -2,7 +2,7 @@
 require_once(dirname(__FILE__)."/header.php");
 if($_GET['type']=="file")
 {
-	if($_GET['name']=="vpro_output.csv")
+	if($_GET['name']=="vpro2_output.csv")
 	{
 		$query="SELECT a.Variable_Name, a.Business_Definition, a.Keyword, b.Field_Type,b.Field_Length,b.Field_Format
 			FROM DictionaryData a INNER JOIN  FieldData b ON a.Variable_Name=b.FieldName
@@ -119,22 +119,22 @@ else
 					</tr>
 					<tr>
 						<td>OUTPUTS</td>
-						<td></td>
+						<td>Get a quick list of all the outputs that are exported from the SAS/Analytical jobs</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>RESULTS</td>
-						<td></td>
+						<td>List of all files that have final results ready for user consumption</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>CODE</td>
-						<td></td>
+						<td>List of files that comprise the processing code for the model</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>GRAPH DATA</td>
-						<td></td>
+						<td>List of files that will be used by graphing application. This will prevent file lock while working on results.</td>
 						<td></td>
 					</tr>
 				</tbody>

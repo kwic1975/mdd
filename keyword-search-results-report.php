@@ -36,6 +36,9 @@ if(!empty($_GET['key'])){
 						?>
 					</tbody>
 				</table>
+				<h3>
+				<a href="<?php echo SITE_URL;?>/keyword-search.php">Back to Keyword Search</a>
+				</h3>
 			</div>
 		</div>
 		<div class="col-md-1 col-sm-12"></div>

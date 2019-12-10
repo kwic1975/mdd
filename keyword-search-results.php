@@ -66,6 +66,9 @@ if(!empty($_GET['search-text'])){
 					}
 				}
 				?>
+				<h3>
+				<a href="<?php echo SITE_URL;?>/keyword-search.php">Back to Keyword Search</a>
+				</h3>
 			</center>
 		</div>
 	</div>

@@ -28,7 +28,7 @@ include_once(dirname(__FILE__)."/header.php");
 				<tr>
 					<td><a href="<?php echo SITE_URL;?>/name-search.php">Name search (can be a field name or a file name, exact or with wildcards)</a></td>
 					<td>Most Popular:<ul>
-						<li><a href="<?php echo SITE_URL;?>/pop.php?type=file&name=vpro_output.csv">VPro2_Output.csv</a></li>
+						<li><a href="<?php echo SITE_URL;?>/pop.php?type=file&name=vpro2_output.csv">VPro2_Output.csv</a></li>
 						<li><a href="<?php echo SITE_URL;?>/pop.php?type=file&name=graph_spx_daily.csv">Graph_SPX_Daily.csv</a></li>
 						<li><a href="<?php echo SITE_URL;?>/pop.php?type=keys">Keywords</a></li>
 						</ul>
