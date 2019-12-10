@@ -36,9 +36,6 @@ if(!empty($_GET['name']) && !empty($_GET['type'])){
 						?>
 					</tbody>
 				</table>
-				<h3>
-				<a href="<?php echo SITE_URL;?>/name-search.php">Back to Name Search</a>
-				</h3>
 			</div>
 		</div>
 		<div class="col-md-1 col-sm-12"></div>

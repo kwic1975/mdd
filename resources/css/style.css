@@ -4,12 +4,32 @@
 .p-table{
 	margin-top: 50px;
 }
+.field_names{
+	background: #eee;
+    padding: 7px 5px;
+    text-align: center;
+	margin-bottom: 3px;
+}
+.report_cont{
+	margin-top:20px
+}
+.p-select{
+	max-width: 300px;
+	float: left;
+    margin-right: 20px;
+}
 .centerTable11{
     table-layout: fixed;
     word-break: break-word;
     width: 100%;
 }
+th.double {
+    width: 40%;
+}
 .centerTable11 thead tr th{
+    padding-right: 10px;
+}
+.centerTable11 tbody tr th{
     padding-right: 10px;
 }
 .centerTable11 thead.fixed tr th{
@@ -25,7 +45,9 @@
     top:0;
     width: 1140px;
 }
-
+.fixed tr th.double {
+    width: 40%;
+}
 @media (max-width: 1199px){
     .fixed {
         width: 940px;
@@ -42,4 +64,8 @@
     left: 15px;
     right: 15px;
 }
+}
+#form-dict
+{
+	margin-top:50px;
 }

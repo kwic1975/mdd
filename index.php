@@ -14,8 +14,8 @@ include_once(dirname(__FILE__)."/common-header.php");
 		//defensive sql injection
 		$username=stripcslashes(stripcslashes($_POST['uname']));
 		$password=stripcslashes(stripcslashes($_POST['pwd']));
-		// $dbname="blinkcoders_mdd";
-		$dbname="mdd";
+		$dbname="blinkcoders_mdd";
+		//$dbname="mdd";
 		$server="localhost";
 		$con=mysqli_connect($server,$username,$password,$dbname);
 		
@@ -26,13 +26,13 @@ include_once(dirname(__FILE__)."/common-header.php");
 		{
 			$_SESSION['mdd']['uname']=$username;
 			$_SESSION['mdd']['pass']=$password;
-			// if($_POST['uname']=="blinkcoders_mdd_admin")
-			if($_POST['uname']=="mdd_admin")
+		//	if($_POST['uname']=="mdd_admin")
+			if($_POST['uname']=="blinkcoders_mdd_admin")
 			{
 				$_SESSION['mdd']['utype']="admin";
 			}
-			// else if($_POST['uname']=="blinkcoders_mdd_editor")
-			else if($_POST['uname']=="mdd_editor")
+			//else if($_POST['uname']=="mdd_editor")
+			else if($_POST['uname']=="blinkcoders_mdd_editor")
 			{
 				$_SESSION['mdd']['utype']='editor';
 			}
@@ -73,7 +73,7 @@ form
 }
 </style>
 <div class="container form">
-  <form class="form-horizontal" action="<?php echo htmlspecialchars(SITE_URL."/index.php"); ?>" method="post">
+  <form class="form-horizontal" action="<?php echo SITE_URL."/index.php"; ?>" method="post">
     <div class="form-group row">
       <label class="control-label col-sm-2 border-blue" for="uname">Username:</label>
       <div class="col-sm-4">
