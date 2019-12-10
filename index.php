@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__)."/header.php");
+include_once(dirname(__FILE__)."/common-header.php");
 ?>
 <?php
 	if(isset($_SESSION['mdd']))
@@ -14,25 +14,22 @@ require_once(dirname(__FILE__)."/header.php");
 		//defensive sql injection
 		$username=stripcslashes(stripcslashes($_POST['uname']));
 		$password=stripcslashes(stripcslashes($_POST['pwd']));
-		// $dbname="blinkcoders_mdd";
-		$dbname="mdd";
+		$dbname="blinkcoders_mdd";
 		$server="localhost";
 		$con=mysqli_connect($server,$username,$password,$dbname);
-
+		
 		$username=mysqli_real_escape_string($con,$username);
 		$password=mysqli_real_escape_string($con,$password);
-
+		
 		if($con)
 		{
 			$_SESSION['mdd']['uname']=$username;
 			$_SESSION['mdd']['pass']=$password;
-			// if($_POST['uname']=="blinkcoders_mdd_admin")
-			if($_POST['uname']=="mdd_admin")
+			if($_POST['uname']=="blinkcoders_mdd_admin")
 			{
 				$_SESSION['mdd']['utype']="admin";
 			}
-			//else if($_POST['uname']=="blinkcoders_mdd_editor")
-			else if($_POST['uname']=="mdd_editor")
+			else if($_POST['uname']=="blinkcoders_mdd_editor")
 			{
 				$_SESSION['mdd']['utype']='editor';
 			}
@@ -88,7 +85,7 @@ form
     </div>
     <div class="form-group">        
       <div class="col-sm-10 buttonn">
-	         <input type="submit" class="btn btn-default" name="action" value="Login">
+		<input type="submit" class="btn btn-default" name="action" value="Login">
       </div>
     </div>
 	<div class="col-sm-5 buttonnn">
@@ -96,4 +93,4 @@ form
 	</div>
   </form>
 </div>
-<?php require_once(dirname(__FILE__)."/footer.php"); ?>
+<?php include_once(dirname(__FILE__)."/footer.php"); ?>

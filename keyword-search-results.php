@@ -20,7 +20,7 @@ if(!empty($_GET['search-text'])){
 	<?php
 		// print_r($_POST);
 		// get exact matches 
-		$q1="select count(*) as exact_search_count from (select distinct variable_name, variable_name_type from DictionaryData where variable_name = '".mysqli_real_escape_string($con,$str)."' order by variable_name_type) at";
+		$q1="select count(*) as exact_search_count from (select distinct Keyword from DictionaryData where Keyword = '".mysqli_real_escape_string($con,$str)."' order by Keyword) at";
 		$result=$con->query($q1);
 		$row=$result->fetch_assoc();
 		$c1=$row['exact_search_count'];
@@ -33,10 +33,10 @@ if(!empty($_GET['search-text'])){
 				</h2>
 				<?php 
 				if($c1>0){
-					$q2="select distinct variable_name, variable_name_type from DictionaryData where variable_name = '".mysqli_real_escape_string($con,$str)."' order by variable_name_type";
+					$q2="select distinct Keyword from DictionaryData where Keyword = '".mysqli_real_escape_string($con,$str)."' order by Keyword";
 					$res=$con->query($q2);
 					while($row=$res->fetch_assoc()){
-						echo "<a href='".SITE_URL."/name-search-results-report.php?name=".$row['variable_name']."&type=".$row['variable_name_type']."'>".$row['variable_name']." & ".$row['variable_name_type'].'</a><br>';
+						echo "<a href='".SITE_URL."/keyword-search-results-report.php?key=".$row['Keyword']."'>".$row['Keyword'].'</a><br>';
 					}
 				}
 				?>
@@ -46,7 +46,7 @@ if(!empty($_GET['search-text'])){
 	<?php
 		// print_r($_POST);
 		// get exact matches 
-		$q1="select count(*) as wildcard_search_count from (select distinct variable_name, variable_name_type from DictionaryData where (variable_name LIKE '%".mysqli_real_escape_string($con,$str)."%' and variable_name!='".mysqli_real_escape_string($con,$str)."') order by variable_name_type) at";
+		$q1="select count(*) as wildcard_search_count from (select distinct Keyword from DictionaryData where (Keyword LIKE '%".mysqli_real_escape_string($con,$str)."%' and Keyword!='".mysqli_real_escape_string($con,$str)."') order by Keyword) at";
 		$result=$con->query($q1);
 		$row=$result->fetch_assoc();
 		$c1=$row['wildcard_search_count'];
@@ -59,10 +59,10 @@ if(!empty($_GET['search-text'])){
 				</h2>
 				<?php 
 				if($c1>0){
-					$q2="select distinct variable_name, variable_name_type from DictionaryData where (variable_name LIKE '%".mysqli_real_escape_string($con,$str)."%' and variable_name!='".mysqli_real_escape_string($con,$str)."') order by variable_name_type";
+					$q2="select distinct Keyword from DictionaryData where (Keyword LIKE '%".mysqli_real_escape_string($con,$str)."%' and Keyword!='".mysqli_real_escape_string($con,$str)."') order by Keyword";
 					$res=$con->query($q2);
 					while($row=$res->fetch_assoc()){
-						echo "<a href='".SITE_URL."/name-search-results-report.php?name=".$row['variable_name']."&type=".$row['variable_name_type']."'>".$row['variable_name']." & ".$row['variable_name_type'].'</a><br>';
+						echo "<a href='".SITE_URL."/keyword-search-results-report.php?key=".$row['Keyword']."'>".$row['Keyword'].'</a><br>';
 					}
 				}
 				?>

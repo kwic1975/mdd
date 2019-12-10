@@ -1,21 +1,12 @@
 <?php
-require_once(dirname(__FILE__)."/header.php");
-require_once(dirname(__FILE__)."/login-check.php"); 
+include_once(dirname(__FILE__)."/header.php");
+//include_once(dirname(__FILE__)."/login-check.php"); 
 ?>
 <div class="row">
-	<div class="col-md-1 col-sm-12">
-	</div>
-	<div class="col-md-4 col-sm-12 user-text">
-			Welcome <b><?php echo htmlspecialchars($_SESSION['mdd']['uname']); ?></b>
-			<br><a href="<?php echo SITE_URL;?>/landing-success.php">Home Page</a>
-			<br><a href="<?php echo SITE_URL;?>/logout.php">Logout</a>
-	</div>
-</div>
-<div class="row">
 	<div class="col-sm-12">
-		<center><h1>
+		<center><h2>
 			Name Search
-		</h1></center>
+		</h2></center>
 	</div>
 </div>
 <div class="row">
@@ -42,15 +33,14 @@ require_once(dirname(__FILE__)."/login-check.php");
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8"><center>
-		<form class="form-inline" method="post" action="<?php echo htmlspecialchars(SITE_URL); ?>/name-search-results.php">
-		<div class="form-group">
-			<input type="text" required class="form-control"  name="search-text" id="search-text">
-			<input type="hidden" name="action" value="search-name">
-		</div>
-		<button type="submit" class="btn btn-primary btn-md">Search</button>
+		<form class="form-inline" method="GET" action="<?php echo SITE_URL; ?>/name-search-results.php">
+			<div class="form-group">
+				<input type="text" required class="form-control search_input"  name="search-text" id="search-text" placeholder="ENTER NAME SEARCH TEXT HERE">
+			</div>
+			<button type="submit" class="btn btn-primary btn-md">Search</button>
 		</form>
 		</center>
 	</div>
 	<div class="col-sm-2"></div>
 </div>
-<?php require_once(dirname(__FILE__)."/footer.php"); ?>
+<?php include_once(dirname(__FILE__)."/footer.php"); ?>

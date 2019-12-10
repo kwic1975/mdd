@@ -9,4 +9,6 @@ function base_url(){
 define('SUB_FOLDER', "/mdd"); // without trailing slash
 define('SITE_URL', base_url().SUB_FOLDER);
 define('BASE_DIR', dirname(__FILE__));
+define('RESOURCES_URL', base_url().SUB_FOLDER.'/resources/');
+define('RESOURCES_DIR', BASE_DIR.'/resources');
 ?>

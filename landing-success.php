@@ -1,16 +1,7 @@
 <?php
-require_once(dirname(__FILE__)."/header.php");
-//require_once(dirname(__FILE__)."/login-check.php"); 
+include_once(dirname(__FILE__)."/header.php");
+//include_once(dirname(__FILE__)."/login-check.php"); 
 ?>
-<div class="row">
-	<div class="col-md-1 col-sm-12">
-	</div>
-	<div class="col-md-4 col-sm-12 user-text">
-			Welcome <b><?php echo htmlspecialchars($_SESSION['mdd']['uname']); ?></b>
-			<br><a href="<?php echo SITE_URL;?>/landing-success.php">Home Page</a>
-			<br><a href="<?php echo SITE_URL;?>/logout.php">Logout</a>
-	</div>
-</div>
 <div class="row">
 	<div class="col-sm-12 table-responsive">
 			<table class="centerTable">
@@ -68,7 +59,7 @@ require_once(dirname(__FILE__)."/header.php");
 					?>			
 				</tr>
 				<tr>
-					<td><a href="<?php echo SITE_URL;?>/key-search.php">Keyword search (can be a field name or a file name, exact or with wildcards)</a></td>
+					<td><a href="<?php echo SITE_URL;?>/keyword-search.php">Keyword search (can be a field name or a file name, exact or with wildcards)</a></td>
 					<td><a href="<?php echo SITE_URL;?>/reports.php">Set of maintenance reports</a></td>
 					<?php 
 						if($_SESSION['mdd']['utype']=='admin' or $_SESSION['mdd']['utype']=='editor')
@@ -90,4 +81,4 @@ require_once(dirname(__FILE__)."/header.php");
 			</table>
 	</div>
 </div>
-<?php require_once(dirname(__FILE__)."/footer.php"); ?>
+<?php include_once(dirname(__FILE__)."/footer.php"); ?>
