@@ -89,8 +89,8 @@ if($_GET['type']=="file")
 	  var sticky = $('.stick_to_top'),
 		  scroll = $(window).scrollTop();
 
-	  if (scroll >= stickyOffset) sticky.addClass('fixed');
-	  else sticky.removeClass('fixed');
+	  if (scroll >= stickyOffset) sticky.parent().addClass('fixed');
+	  else sticky.parent().removeClass('fixed');
 	});
 </script>
 	<?php

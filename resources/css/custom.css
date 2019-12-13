@@ -1,0 +1,50 @@
+/*div.form*/
+/*{*/
+/*    margin-top:13%;*/
+/*	margin-left:30%;*/
+/*	display: block;*/
+/*    text-align: center;*/
+/*}*/
+form
+{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+.login--form{
+	margin: 0 auto;
+	max-width: 450px;
+	background: #fff;
+	box-shadow: 0px 10px 34px rgba(0,0,0,0.09);
+	padding: 30px;
+	box-shadow: 10px;
+}
+.login--form .buttonn .btn {
+	background: #463ea3;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 600;
+	border: none !important;
+}
+.login--form .buttonnn {
+	border: none;
+	text-align: center;
+	font-size: 14px;
+	background: #f8f8f8;
+	border: none;
+	padding: 10px;
+}
+/*.user-text{*/
+/*    text-align: right;*/
+/*}*/
+/*.site-header{*/
+/*    padding: 20px 0;*/
+/*    border-bottom: 1px solid #ddd;*/
+/*}*/
+/*.user-text li a{*/
+/*    color: #5b9bd5;*/
+/*    font-weight: 600;*/
+/*}*/
+/*.user-text li a:hover, .user-text li a:focus{*/
+/*    text-decoration: underline;*/
+/*}*/

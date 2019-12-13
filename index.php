@@ -57,43 +57,30 @@ include_once(dirname(__FILE__)."/common-header.php");
 		</h1></center>
 	</div>
 </div>
-<style>
-div.form
-{
-    margin-top:13%;
-	margin-left:30%;
-	display: block;
-    text-align: center;
-}
-form
-{
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-}
-</style>
-<div class="container form">
-  <form class="form-horizontal" action="<?php echo SITE_URL."/index.php"; ?>" method="post">
-    <div class="form-group row">
-      <label class="control-label col-sm-2 border-blue" for="uname">Username:</label>
-      <div class="col-sm-4">
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+<div class="form login--form">
+  <form class="" action="<?php echo SITE_URL."/index.php"; ?>" method="post">
+    <div class="form-group">
+      <label class="control-label" for="uname">Username:</label>
+      
         <input type="uname" required class="form-control" id="uname" placeholder="Enter Username" name="uname">
-      </div>
+      
     </div>
-    <div class="form-group row">
-      <label class="control-label col-sm-2 border-blue" for="pwd">Password:</label>
-      <div class="col-sm-4">          
+    <div class="form-group">
+      <label class="control-label" for="pwd">Password:</label>
+              
         <input type="password" required class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-      </div>
+      
     </div>
     <div class="form-group">        
-      <div class="col-sm-10 buttonn">
+      <div class="buttonn">
 		<input type="submit" class="btn btn-default" name="action" value="Login">
       </div>
     </div>
-	<div class="col-sm-5 buttonnn">
+	<div class="buttonnn">
 		Send a request to admin@mdd.com to get login credentials or report any issues
 	</div>
   </form>
+</div>
 </div>
 <?php include_once(dirname(__FILE__)."/footer.php"); ?>

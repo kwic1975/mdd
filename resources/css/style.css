@@ -1,3 +1,32 @@
+.restore_cont{
+	padding: 10px 0px;
+	display: inline-block;
+    width: 100%;
+}
+.restore_text{
+	font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+.ps-notify-alert:hover{opacity:0.9;cursor:pointer;}
+.ps-notify-alert{width:100%;padding:15px;border-radius:5px;margin-top:15px;}
+.ps-notify-alert.success{background:#4CAF50;color:white;}
+.ps-notify-alert.danger{background:#f44336;color:white;}
+span.ps-notify-close{float:right;}
+.ps-notify-cont{position:fixed;top:0;width:350px;left:0;right:0;margin:auto;}
+.alert-danger {
+    word-break:break-word;
+}
+#VName,#FName{
+	text-transform:uppercase;
+}
+#form-dict .form-group,#form-file .form-group{
+	padding-left: 0;
+}
+#error1,#error2{
+	display:none;
+}
 .search_input{
 	min-width: 300px;
 }
@@ -24,7 +53,7 @@
     width: 100%;
 }
 th.double {
-    width: 40%;
+    width: 30%;
 }
 .centerTable11 thead tr th{
     padding-right: 10px;
@@ -35,35 +64,70 @@ th.double {
 .centerTable11 thead.fixed tr th{
     width: 100%;
 }
-.centerTable11 thead.fixed tr{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-.fixed{
-    position: fixed;
-    top:0;
+.fixed .stick_to_top{
+	position: fixed;
+    top: 0;
     width: 1140px;
+    display: table;
+    table-layout: fixed;
+    
 }
-.fixed tr th.double {
-    width: 40%;
+.centerTable11.fixed{
+	table-layout: auto;
+	
 }
+
+.centerTable11.fixed thead tr th{
+	width: 16%;
+}
+.centerTable11.fixed tbody tr td{
+	width: 16%;
+}
+.centerTable11.fixed thead tr th.double{
+	width: 30%;
+}
+.centerTable11.fixed tbody tr td.double{
+	width: 30%;
+}
+.centerTable11.fixed thead{
+	display: table;
+}
+.centerTable11.fixed tbody {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+}
+
 @media (max-width: 1199px){
-    .fixed {
+    .fixed .stick_to_top {
         width: 940px;
     }
 }
 @media (max-width: 991px){
-    .fixed {
+    .fixed .stick_to_top {
         width: 722px;
     }
 }
 @media (max-width: 767px){
-.fixed {
+.fixed .stick_to_top {
     width: auto;
     left: 15px;
     right: 15px;
 }
+.centerTable11.fixed thead
+{
+    display:block;
+}
+.centerTable11.fixed thead tr th{
+	width: 14%;
+}
+.centerTable11.fixed tbody tr td{
+	width: 14%;
+}
+}
+#Class2,#FileName,#Kword,#X_Ref,#See_also,#PriorName,#PROC_Step
+{
+	text-transform: uppercase;
 }
 #form-dict
 {

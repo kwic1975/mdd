@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__)."/header.php");
+Check_permission();
 $query_first="SELECT DISTINCT(variable_name_type) from DictionaryData";
 $result_first=$con->query($query_first);
 if($result_first and $result_first->num_rows!=0)
@@ -26,9 +27,10 @@ if(isset($_GET['type']))
 		<h2>
 			Edit Dictionary
 		</h2>
-	</center>
+	    </center>
+	    <div class='col-sm-1'></div>
 		<form class="form-inline">
-			<div class="form-group col-sm-6">
+			<div class="form-group col-sm-5">
 				<label for="variable_type">Variable_Name_Type:</label>
 				<select id="variable_type" class="form-control">
 					<option disabled selected>-Select A Variable Type-</option>
@@ -74,22 +76,25 @@ if(isset($_GET['type']) and isset($_GET['var']))
 		$row_data=$result->fetch_assoc();
 	}
 ?>
+<div class="alert alert-danger alert-dismissible" role="alert" id="error" style="display:none; margin-top:20px;">
+</div>
 <div class="row" id="form-dict">
-	<div class="col-sm-12">
+	<div class='col-sm-1'></div>
+	<div class="col-sm-11">
 		  <ul class="nav nav-tabs nav-justified">
-			<li class="<?php if(isset($_GET['tab']) and $_GET['tab']=='bi'){echo "active";}else if(!isset($_GET['tab'])){
+			<li class="<?php if(isset($_GET['tab']) and $_GET['tab']=='1'){echo "active";}else if(!isset($_GET['tab'])){
 				echo "active";
-			}?>"><a data-toggle="tab" href="#bi">Business Information</a></li>
-			<li class="<?php if(isset($_GET['tab']) and $_GET['tab']=='ti'){echo "active";}?>"><a data-toggle="tab" href="#ti">Technical Information</a></li>
-			<li class="<?php if(isset($_GET['tab']) and $_GET['tab']=='ri'){echo "active";}?>"><a data-toggle="tab" href="#ri">Reference Information</a></li>
-			<li class="<?php if(isset($_GET['tab']) and $_GET['tab']=='ud'){echo "active";}?>"><a data-toggle="tab" href="#ud">User Defined</a></li>
+			}?>"><a data-toggle="tab" href="#1">Business Information</a></li>
+			<li class="<?php if(isset($_GET['tab']) and $_GET['tab']=='2'){echo "active";}?>"><a data-toggle="tab" href="#2">Technical Information</a></li>
+			<li class="<?php if(isset($_GET['tab']) and $_GET['tab']=='3'){echo "active";}?>"><a data-toggle="tab" href="#3">Reference Information</a></li>
+			<li class="<?php if(isset($_GET['tab']) and $_GET['tab']=='4'){echo "active";}?>"><a data-toggle="tab" href="#4">User Defined</a></li>
 		  </ul>
 		  <div class="tab-content">
-			<div id="bi" class="tab-pane fade <?php if(isset($_GET['tab']) and $_GET['tab']=='bi'){echo "active in";}else if(!isset($_GET['tab'])){
+			<div id="1" class="tab-pane fade <?php if(isset($_GET['tab']) and $_GET['tab']=='1'){echo "active in";}else if(!isset($_GET['tab'])){
 				echo "active in";
 			}?>">
 			<h3>Business Information</h3>
-				<form class="update-dict-form" action="return false" data-next="ti">
+				<form class="update-dict-form" action="return false" data-next="2">
 					<div class="form-group">
 							<label for="Bdefinition">Business_Definition :</label>
 							<input type="text" id="Bdefinition" name="Bdefinition" class="form-control" required value="<?php if(isset($row_data['Business_Definition'])){echo htmlspecialchars($row_data['Business_Definition']);}?>">
@@ -102,12 +107,12 @@ if(isset($_GET['type']) and isset($_GET['var']))
 						<input type="submit" class="btn btn-success" value="Save and Next" name="save_step">
 					</div>
 					<input type="hidden" value="1" name="Step">
-					<input type="hidden" value="ti" name="next">
+					<input type="hidden" value="2" name="next">
 				</form>
 			</div>
-			<div id="ti" class="tab-pane fade <?php if(isset($_GET['tab']) and $_GET['tab']=='ti'){echo "active in";}?>">
+			<div id="2" class="tab-pane fade <?php if(isset($_GET['tab']) and $_GET['tab']=='2'){echo "active in";}?>">
 			  <h3>Technical Information</h3>
-			  <form class="update-dict-form" data-next="ri">
+			  <form class="update-dict-form" data-next="3">
 				  <div class="form-group">
 							<label for="Tdefinition">Technical_Definition :</label>
 							<input type="text" id="Tdefinition" name="Tdefinition" class="form-control"  value="<?php if(isset($row_data['Technical_Definition'])){echo htmlspecialchars($row_data['Technical_Definition']); }?>">
@@ -120,12 +125,12 @@ if(isset($_GET['type']) and isset($_GET['var']))
 						<input type="submit" class="btn btn-success" value="Save and Next" name="save_step">
 					</div>
 					<input type="hidden" value="2" name="Step">
-					<input type="hidden" value="ri" name="next">
+					<input type="hidden" value="3" name="next">
 				</form>
 			</div>
-			<div id="ri" class="tab-pane fade <?php if(isset($_GET['tab']) and $_GET['tab']=='ri'){echo "active in";}?>">
+			<div id="3" class="tab-pane fade <?php if(isset($_GET['tab']) and $_GET['tab']=='3'){echo "active in";}?>">
 			  <h3>Reference Information</h3>
-			  <form class="update-dict-form" data-next="ud">
+			  <form class="update-dict-form" data-next="4">
 					<div class="form-group col-sm-6">
 							<label for="Kword">Keyword :</label>
 							<input type="text" id="Kword" name="Kword" class="form-control" required value="<?php if(isset($row_data['Keyword'])){echo htmlspecialchars($row_data['Keyword']);}?>"> 
@@ -143,15 +148,15 @@ if(isset($_GET['type']) and isset($_GET['var']))
 							<input type="text" id="X_Ref" name="X_Ref" class="form-control" value="<?php if(isset($row_data['X_Ref'])){echo htmlspecialchars($row_data['X_Ref']);}?>">
 					</div>
 					<input type="hidden" value="3" name="Step">
-					<input type="hidden" value="ud" name="next">
+					<input type="hidden" value="4" name="next">
 					<div>
 						<input type="submit" class="btn btn-success" value="Save and Next" name="save_step">
 					</div>
 				</form>
 			</div>
-			<div id="ud" class="tab-pane fade <?php if(isset($_GET['tab']) and $_GET['tab']=='ud'){echo "active in";}?>">
+			<div id="4" class="tab-pane fade <?php if(isset($_GET['tab']) and $_GET['tab']=='4'){echo "active in";}?>">
 			  <h3>User Defined</h3>
-			  <form class="update-dict-form" data-next='bi'>
+			  <form class="update-dict-form" data-next='4'>
 					<div class="form-group">
 							<label for="ud1">User_Defined1 :</label>
 							<input type="text" id="ud1" class="form-control" name="ud1" value="<?php if(isset($row_data['User_Defined1'])){echo htmlspecialchars($row_data['User_Defined1']);}?>">
@@ -162,8 +167,7 @@ if(isset($_GET['type']) and isset($_GET['var']))
 					</div>
 					<div class="form-group">
 							<label for="ud3">User_Defined3:</label>
-							<input type="text" id="ud3" class="form-control" name="ud3" value="
-							<?php if(isset($row_data['User_Defined3'])){echo htmlspecialchars($row_data['User_Defined3']);}?>">
+							<input type="text" id="ud3" class="form-control" name="ud3" value="<?php if(isset($row_data['User_Defined3'])){echo htmlspecialchars($row_data['User_Defined3']);}?>">
 					</div>
 					<div class="form-group">
 							<label for="ud4">User_Defined4:</label>

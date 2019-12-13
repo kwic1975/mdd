@@ -1,10 +1,46 @@
 <?php
-require_once(dirname(__FILE__)."/header.php");
+include_once(dirname(__FILE__)."/header.php");
+Check_permission();
 ?>
-<center>
-<h1>
-Under Construction<br> 
-<a href="<?php echo SITE_URL;?>/index.php"><u>Go Back</u></a>.
-</h1>
-</center>
-<?php require_once(dirname(__FILE__)."/footer.php"); ?>
+<div class="row" id="form-dict">
+	<div class='col-sm-1'></div>
+	<div class="col-sm-11">
+		<center><h3>Add contents – FileName</h3></center>
+		<div class='alert alert-danger' id='error1'></div>
+		<form id="add-file-form">
+			<input type="hidden" value="AddFile" name="action">
+			<div class="form-group col-sm-6">
+				<label for="FName">FileName:</label>
+				<input type="text" id="FName" name="FName" class="form-control" required>
+			</div>
+			<div class='form-group col-sm-12'>
+				<input type="submit" class="btn btn-success" value="Save and Next" name="save_step">
+			</div>
+		</form>
+		<?php 
+		if($_SESSION['mdd']['utype']=="admin"){
+		?>
+		<div class='restore_cont'>
+			<div class='restore_text'>Restore "Last Good Copy"</div>
+			<div class='form-group'>
+				<?php
+				// check if last copy is present 
+				$sql='select * from FileData_lgc';
+				$res=$con->query($sql);
+				if($res->num_rows){
+				?>
+					<div id='error2' class='alert'></div>
+					<button type='button' class='btn btn-primary restore_lgc' data-table='2'>Restore</button>
+				<?php 
+				}else{
+					echo "<div class='alert alert-danger'>No Good Copy found.</div>";
+				}
+				?>
+			</div>
+		</div>
+		<?php 
+		}
+		?>
+	</div>
+</div>
+<?php include_once(dirname(__FILE__)."/footer.php"); ?>
