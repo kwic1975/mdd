@@ -34,6 +34,18 @@ else
 	echo "<center><h2>No Data Found in FileData</h2></center>";
 	die();
 }
+$query_cls2="SELECT distinct(Class2) from FileData";
+$result_cls2=$con->query($query_cls2);
+if($result_cls2 and $result_cls2->num_rows!=0)
+{
+	//ok
+}
+
+else
+{
+	echo "<center><h2>No Data Found in FileData</h2></center>";
+	die();
+}
 $query_cls3="SELECT distinct(Class3) from FileData";
 $result_cls3=$con->query($query_cls3);
 if($result_cls3 and $result_cls3->num_rows!=0)

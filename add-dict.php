@@ -10,7 +10,7 @@ Check_permission();
 		<div class='alert alert-danger' id='error1'></div>
 		<form id="add-dictionary-form" action="return false" data-next="bi">
 			<input type="hidden" value="AddDict" name="action">
-			<div class="form-group col-sm-6">
+			<!-- <div class="form-group col-sm-6">
 				<label for="VName">Variable_Name:</label>
 				<input type="text" id="VName" name="VName" class="form-control" required>
 			</div>
@@ -21,7 +21,20 @@ Check_permission();
 					<option value='FILE'>FILE</option>
 					<option value='FIELD'>FIELD</option>
 				</select>
-			</div>
+			</div> -->
+				<div class="form-group col-sm-6">
+					<label for="VNameType">Variable_Name_Type:</label>
+					<select id="VNameType" name="VNameType" class="form-control" required>
+						<option value=''>Select</option>
+						<option value='FILE'>FILE</option>
+						<option value='FIELD'>FIELD</option>
+					</select>
+				</div>
+					<div class="form-group col-sm-6">
+						<label for="VName">Variable_Name:</label>
+						<input type="text" id="VName" name="VName" class="form-control" required>
+					</div>
+
 			<div>
 				<input type="submit" class="btn btn-success" value="Save and Next" name="save_step">
 			</div>
