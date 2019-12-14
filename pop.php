@@ -26,7 +26,7 @@ if($_GET['type']=="file")
 			<center>
 				<h1>
 					Invalid Filename<br> 
-					<a href="<?php echo SITE_URL;?>/index.php"><u>Go Back</u></a>.
+					<a class='back_link' href="<?php echo SITE_URL;?>/index.php"><u>Go Back</u></a>
 				</h1>
 			</center>
 		<?php
@@ -83,16 +83,6 @@ if($_GET['type']=="file")
 			</table>
 	</div>
 </div>
-<script>
-	var stickyOffset = $('.stick_to_top').offset().top;
-	$(window).scroll(function(){
-	  var sticky = $('.stick_to_top'),
-		  scroll = $(window).scrollTop();
-
-	  if (scroll >= stickyOffset) sticky.parent().addClass('fixed');
-	  else sticky.parent().removeClass('fixed');
-	});
-</script>
 	<?php
 }
 else
@@ -153,5 +143,4 @@ else
 	
 	<?php
 }
-?>
-<?php require_once(dirname(__FILE__)."/footer.php"); ?>
+require_once(dirname(__FILE__)."/footer.php"); ?>

@@ -3,21 +3,23 @@ include_once(dirname(__FILE__)."/header.php");
 
 ?>
 <div class='row report_cont'>
-	<div class='col-sm-1'></div>
-	<div class='col-sm-11'>
-		<h3>Keyword frequency report</h3>
+	
+	<div class='col-sm-12'>
+		<h3><center>Keyword frequency report</center></h3>
 		<?php 
 		$sql="select distinct Keyword,count(*) as frequency from DictionaryData where Keyword!='' group by Keyword order by Keyword";
 		$res=$con->query($sql);
 		if($res->num_rows){
 			?>
 			<div class='table-responsive'>
-				<table class=''>
-					<tbody>
-						<tr>
-							<td>Keyword</td>
-							<td>Frequency</td>
+				<table class='full-width-table'>
+				    <thead>
+				        <tr>
+							<th>Keyword</th>
+							<th>Frequency</th>
 						</tr>
+				    </thead>
+					<tbody>
 						<?php 
 						while($row=$res->fetch_assoc()){
 							?>
@@ -40,7 +42,7 @@ include_once(dirname(__FILE__)."/header.php");
 		?>
 	</div>
 	<center>
-		<h3><a href="<?php echo SITE_URL;?>/reports.php">Back to Maintenance Reports</a></h3>
+		<h3><a class='back_link' href="<?php echo SITE_URL;?>/reports.php">Back to Maintenance Reports</a></h3>
 	</center>
 </div>
 <?php include_once(dirname(__FILE__)."/footer.php"); ?>

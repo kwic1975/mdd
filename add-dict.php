@@ -3,14 +3,13 @@ include_once(dirname(__FILE__)."/header.php");
 Check_permission();
 ?>
 <div class="row" id="form-dict">
-	<div class='col-sm-1'></div>
-	<div class="col-sm-11">
+	<div class="col-sm-12">
 		<center><h3>Add contents – Dictionary</h3></center>
 		
 		<div class='alert alert-danger' id='error1'></div>
 		<form id="add-dictionary-form" action="return false" data-next="bi">
 			<input type="hidden" value="AddDict" name="action">
-			<!-- <div class="form-group col-sm-6">
+			<div class="form-group col-sm-6">
 				<label for="VName">Variable_Name:</label>
 				<input type="text" id="VName" name="VName" class="form-control" required>
 			</div>
@@ -21,20 +20,7 @@ Check_permission();
 					<option value='FILE'>FILE</option>
 					<option value='FIELD'>FIELD</option>
 				</select>
-			</div> -->
-				<div class="form-group col-sm-6">
-					<label for="VNameType">Variable_Name_Type:</label>
-					<select id="VNameType" name="VNameType" class="form-control" required>
-						<option value=''>Select</option>
-						<option value='FILE'>FILE</option>
-						<option value='FIELD'>FIELD</option>
-					</select>
-				</div>
-					<div class="form-group col-sm-6">
-						<label for="VName">Variable_Name:</label>
-						<input type="text" id="VName" name="VName" class="form-control" required>
-					</div>
-
+			</div>
 			<div>
 				<input type="submit" class="btn btn-success" value="Save and Next" name="save_step">
 			</div>

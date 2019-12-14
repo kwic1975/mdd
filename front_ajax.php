@@ -19,7 +19,7 @@ if(isset($_POST['action']) and $_POST['action']=="UpdateFile")
 	'message'=>"",
 	'data'=>array()
 	);
-	$query="SELECT count(*) from FileData where FileName='".mysqli_real_escape_string($con,$_POST['file'])."'";
+	$query="SELECT count(*) from FileData where FileName='".mysqli_real_escape_string($con,urldecode($_POST['file']))."'";
 	{
 		$result=$con->query($query);
 		if($result and $result->num_rows!=0)
@@ -32,11 +32,11 @@ if(isset($_POST['action']) and $_POST['action']=="UpdateFile")
 	{
 		if($count>1)
 		{
-			$query="UPDATE FileData SET Class1='".mysqli_real_escape_string($con,$_POST['class1'])."',Class2 ='".mysqli_real_escape_string($con,$_POST['class2'])."' where FileName='".mysqli_real_escape_string($con,$_POST['file'])."'";
+			$query="UPDATE FileData SET Class1='".mysqli_real_escape_string($con,$_POST['class1'])."',Class2 ='".mysqli_real_escape_string($con,$_POST['class2'])."' where FileName='".mysqli_real_escape_string($con,urldecode($_POST['file']))."'";
 		}
 		else
 		{
-			$query="UPDATE FileData SET Class1='".mysqli_real_escape_string($con,$_POST['class1'])."',Class2 ='".mysqli_real_escape_string($con,$_POST['class2'])."',Class3='".mysqli_real_escape_string($con,$_POST['class3'])."',FilePath='".mysqli_real_escape_string($con,$_POST['fpath'])."' where FileName='".mysqli_real_escape_string($con,$_POST['file'])."'";
+			$query="UPDATE FileData SET Class1='".mysqli_real_escape_string($con,$_POST['class1'])."',Class2 ='".mysqli_real_escape_string($con,$_POST['class2'])."',Class3='".mysqli_real_escape_string($con,$_POST['class3'])."',FilePath='".mysqli_real_escape_string($con,$_POST['fpath'])."' where FileName='".mysqli_real_escape_string($con,urldecode($_POST['file']))."'";
 		}
 		$res=$con->query($query);
 		if($res)
@@ -71,7 +71,7 @@ if(isset($_POST['action']) and $_POST['action']=="UpdateFile")
 			$Active="NO";
 			$Inactive_Date="CURDATE()";
 		}
-		$query="UPDATE FileData SET Inactive_Date='".$Inactive_Date."',Risk_Rating='".mysqli_real_escape_string($con,$_POST['rsk_rating'])."',Comments='".mysqli_real_escape_string($con,$_POST['file_comments'])."',Anniversary_Date='".mysql_date(mysqli_real_escape_string($con,$_POST['Anndate']))."',Active_Indicator='".mysqli_real_escape_string($con,$Active)."' where FileName='".mysqli_real_escape_string($con,$_POST['file'])."'";
+		$query="UPDATE FileData SET Inactive_Date='".$Inactive_Date."',Risk_Rating='".mysqli_real_escape_string($con,$_POST['rsk_rating'])."',Comments='".mysqli_real_escape_string($con,$_POST['file_comments'])."',Anniversary_Date='".mysql_date(mysqli_real_escape_string($con,$_POST['Anndate']))."',Active_Indicator='".mysqli_real_escape_string($con,$Active)."' where FileName='".mysqli_real_escape_string($con,urldecode($_POST['file']))."'";
 		$res=$con->query($query);
 		if($res)
 		{
@@ -95,7 +95,7 @@ if(isset($_POST['action']) and $_POST['action']=="UpdateFile")
 	}
 	if(isset($_POST['Step']) and $_POST['Step']==3)
 	{
-		$query="UPDATE FileData SET User_Defined1=NULLIF('".mysqli_real_escape_string($con,$_POST['ud1'])."',''),User_Defined2=NULLIF('".mysqli_real_escape_string($con,$_POST['ud2'])."',''),User_Defined3=NULLIF('".mysqli_real_escape_string($con,$_POST['ud3'])."',''),User_Defined4=NULLIF('".mysqli_real_escape_string($con,$_POST['ud4'])."',''),User_Defined5=NULLIF('".mysqli_real_escape_string($con,$_POST['ud5'])."','') where FileName='".mysqli_real_escape_string($con,$_POST['file'])."'";
+		$query="UPDATE FileData SET User_Defined1=NULLIF('".mysqli_real_escape_string($con,$_POST['ud1'])."',''),User_Defined2=NULLIF('".mysqli_real_escape_string($con,$_POST['ud2'])."',''),User_Defined3=NULLIF('".mysqli_real_escape_string($con,$_POST['ud3'])."',''),User_Defined4=NULLIF('".mysqli_real_escape_string($con,$_POST['ud4'])."',''),User_Defined5=NULLIF('".mysqli_real_escape_string($con,$_POST['ud5'])."','') where FileName='".mysqli_real_escape_string($con,urldecode($_POST['file']))."'";
 		$res=$con->query($query);
 		if($res)
 		{
@@ -230,7 +230,7 @@ if(isset($_POST['action']) and $_POST['action']=="UpdateField")
 	'message'=>"",
 	'data'=>array()
 	);
-	$query="SELECT count(*) from FieldData where FieldName='".mysqli_real_escape_string($con,$_POST['field'])."'";
+	$query="SELECT count(*) from FieldData where FieldName='".mysqli_real_escape_string($con,urldecode($_POST['field']))."'";
 	{
 		$result=$con->query($query);
 		if($result and $result->num_rows!=0)
@@ -243,11 +243,11 @@ if(isset($_POST['action']) and $_POST['action']=="UpdateField")
 	{
 		if($count>1)
 		{
-			$query="UPDATE FieldData SET Field_Type ='".mysqli_real_escape_string($con,$_POST['Field_Type'])."',Field_Length='".mysqli_real_escape_string($con,$_POST['FieldLength'])."',Field_Format='".mysqli_real_escape_string($con,$_POST['FieldFormat'])."' where FieldName='".mysqli_real_escape_string($con,$_POST['field'])."'";
+			$query="UPDATE FieldData SET Field_Type ='".mysqli_real_escape_string($con,$_POST['Field_Type'])."',Field_Length='".mysqli_real_escape_string($con,$_POST['FieldLength'])."',Field_Format='".mysqli_real_escape_string($con,$_POST['FieldFormat'])."' where FieldName='".mysqli_real_escape_string($con,urldecode($_POST['field']))."'";
 		}
 		else
 		{
-			$query="UPDATE FieldData SET FileName='".mysqli_real_escape_string($con,$_POST['FileName'])."',Field_Type ='".mysqli_real_escape_string($con,$_POST['Field_Type'])."',Field_Length='".mysqli_real_escape_string($con,$_POST['FieldLength'])."',Field_Format='".mysqli_real_escape_string($con,$_POST['FieldFormat'])."' where FieldName='".mysqli_real_escape_string($con,$_POST['field'])."'";
+			$query="UPDATE FieldData SET FileName='".mysqli_real_escape_string($con,$_POST['FileName'])."',Field_Type ='".mysqli_real_escape_string($con,$_POST['Field_Type'])."',Field_Length='".mysqli_real_escape_string($con,$_POST['FieldLength'])."',Field_Format='".mysqli_real_escape_string($con,$_POST['FieldFormat'])."' where FieldName='".mysqli_real_escape_string($con,urldecode($_POST['field']))."'";
 		}
 		$res=$con->query($query);
 		if($res)
@@ -282,7 +282,7 @@ if(isset($_POST['action']) and $_POST['action']=="UpdateField")
 			$Active="NO";
 			$Inactive_Date="CURDATE()";
 		}
-		$query="UPDATE FieldData SET Inactive_Date='".$Inactive_Date."',Risk_Rating='".mysqli_real_escape_string($con,$_POST['rsk_rating'])."',Comments='".mysqli_real_escape_string($con,$_POST['field_comments'])."',Anniversary_Date='".mysqli_real_escape_string($con,mysql_date($_POST['Anndate']))."',Active_Indicator='".mysqli_real_escape_string($con,$Active)."' where FieldName='".mysqli_real_escape_string($con,$_POST['field'])."'";
+		$query="UPDATE FieldData SET Inactive_Date='".$Inactive_Date."',Risk_Rating='".mysqli_real_escape_string($con,$_POST['rsk_rating'])."',Comments='".mysqli_real_escape_string($con,$_POST['field_comments'])."',Anniversary_Date='".mysqli_real_escape_string($con,mysql_date($_POST['Anndate']))."',Active_Indicator='".mysqli_real_escape_string($con,$Active)."' where FieldName='".mysqli_real_escape_string($con,urldecode($_POST['field']))."'";
 		$res=$con->query($query);
 		if($res)
 		{
@@ -308,11 +308,11 @@ if(isset($_POST['action']) and $_POST['action']=="UpdateField")
 	{
 		if($count>1)
 		{
-			$query="UPDATE FieldData SET Prior_Name ='".mysqli_real_escape_string($con,$_POST['PriorName'])."',Prior_Name_Date='".mysqli_real_escape_string($con,$_POST['PNdate'])."' where FieldName='".mysqli_real_escape_string($con,$_POST['field'])."'";
+			$query="UPDATE FieldData SET Prior_Name ='".mysqli_real_escape_string($con,$_POST['PriorName'])."',Prior_Name_Date='".mysqli_real_escape_string($con,$_POST['PNdate'])."' where FieldName='".mysqli_real_escape_string($con,urldecode($_POST['field']))."'";
 		}
 		else
 		{
-			$query="UPDATE FieldData SET Prior_Name ='".mysqli_real_escape_string($con,$_POST['PriorName'])."',Prior_Name_Date='".mysqli_real_escape_string($con,mysql_date($_POST['PNdate']))."',PROC_Step='".mysqli_real_escape_string($con,$_POST['PROC_Step'])."' where FieldName='".mysqli_real_escape_string($con,$_POST['field'])."'";
+			$query="UPDATE FieldData SET Prior_Name ='".mysqli_real_escape_string($con,$_POST['PriorName'])."',Prior_Name_Date='".mysqli_real_escape_string($con,mysql_date($_POST['PNdate']))."',PROC_Step='".mysqli_real_escape_string($con,$_POST['PROC_Step'])."' where FieldName='".mysqli_real_escape_string($con,urldecode($_POST['field']))."'";
 		}
 		$res=$con->query($query);
 		if($res)
@@ -481,8 +481,6 @@ if(isset($_POST["import-csv"])){
 			}
 			else
 			{
-				$update_date=mysqli_real_escape_string($con,mysql_date($column[0]));
-				$update_time=mysqli_real_escape_string($con,mysql_time($column[1]));
 				if($column[2]=="FIELD" or $column[2]=="FILE")
 				{
 					$var_name_type=mysqli_real_escape_string($con,$column[2]);
@@ -516,7 +514,7 @@ if(isset($_POST["import-csv"])){
 				$UD5=mysqli_real_escape_string($con,$column[15]);
 				if($counter==0)
 				{
-					$insert_query.="('".$update_date."','".$update_time."','".$var_name_type."','".$var_name."','".$business_def."','".$business_exam."','".$tech_def."','".$tech_example."','".$keyword."','".$reference."','".$See_also."','".$X_Ref."','".$UD1."','".$UD2."','".$UD3."','".$UD4."','".$UD5."'),";
+					$insert_query.="('','','".$var_name_type."','".$var_name."','".$business_def."','".$business_exam."','".$tech_def."','".$tech_example."','".$keyword."','".$reference."','".$See_also."','".$X_Ref."','".$UD1."','".$UD2."','".$UD3."','".$UD4."','".$UD5."'),";
 					$i++;
 				}
 				else
@@ -528,7 +526,7 @@ if(isset($_POST["import-csv"])){
         }
 		if($counter==0)
 		{
-		    keep_last_good_copy(1);
+		    keep_last_good_copy();
 			$insert_query=substr($insert_query,0,strlen($insert_query)-1);
 			$result=$con->query($insert_query);
 			if($result)
@@ -586,8 +584,6 @@ if(isset($_POST["import-field-csv"])){
 			}
 			else
             {
-					$update_date=mysqli_real_escape_string($con,mysql_date($column[0]));
-					$update_time=mysqli_real_escape_string($con,mysql_time($column[1]));
 					$Anniversary_Date=mysqli_real_escape_string($con,mysql_date($column[2]));
 					if(trim($column[3])!="")
 					{
@@ -633,25 +629,25 @@ if(isset($_POST["import-field-csv"])){
 						$data['errors'][]="Error at Row $i,Column Inactive_Date:- Value is Required when Active_Indicator is 'NO'";
 						$counter++;
 					}
-					if(trim(strtoupper($column[7]))!="HIGH" and trim(strtoupper($column[7]))!="CRITICAL" and trim(strtoupper($column[7]))!="LOW" and trim(strtoupper($column[7]))!="MEDIUM" and trim(strtoupper($column[7]))!="IGNORE")
-					{
-						$data['errors'][]="Error at Row $i,Column Risk_Rating:- Invalid Value; Allowed Values:- High,Low,Critical,Medium,Ignore";
-						$counter++;
-					}
-					else
-					{
+					//if(trim(strtoupper($column[7]))!="HIGH" and trim(strtoupper($column[7]))!="CRITICAL" and trim(strtoupper($column[7]))!="LOW" and trim(strtoupper($column[7]))!="MEDIUM" and trim(strtoupper($column[7]))!="IGNORE")
+				//	{
+					//	$data['errors'][]="Error at Row $i,Column Risk_Rating:- Invalid Value; Allowed Values:- High,Low,Critical,Medium,Ignore";
+					//	$counter++;
+				//	}
+				//	else
+				//	{
 						$rsk=mysqli_real_escape_string($con,$column[7]);
-					}
+				//	}
 					$Comm=mysqli_real_escape_string($con,$column[8]);
-					if(trim(strtoupper($column[9]))=="NUMBER" or trim(strtoupper($column[9]))=="STRING")
-					{
+					//if(trim(strtoupper($column[9]))=="NUMBER" or trim(strtoupper($column[9]))=="STRING" or trim(strtoupper($column[9]))=="DATE")
+					//{
 						$type=mysqli_real_escape_string($con,$column[9]);
-					}
-					else
-					{
-						$data['errors'][]="Error at Row $i,Column Field Type:- Invalid Value; Allowed Values:- Number,String";
-						$counter++;
-					}
+					//}
+				//	else
+				//	{
+					//	$data['errors'][]="Error at Row $i,Column Field Type:- Invalid Value; Allowed Values:- Number,String";
+					//	$counter++;
+				//	}
 					if(is_numeric(trim($column[10])) and $column[10]>0)
 					{
 						$Fllen=mysqli_real_escape_string($con,$column[10]);
@@ -672,7 +668,7 @@ if(isset($_POST["import-field-csv"])){
 					$UD5=mysqli_real_escape_string($con,$column[19]);
 					if($counter==0)
 					{
-						$insert_query.="('".$update_date."','".$update_time."','".$Anniversary_Date."','".$FName."','".$FlName."','".$Act_Ind."','".$InDate."','".$rsk."','".$Comm."','".$type."','".$Fllen."','".$Flformat."','".$PrName."','".$PRDate."','".$PrStep."','".$UD1."','".$UD2."','".$UD3."','".$UD4."','".$UD5."'),";
+						$insert_query.="('','','".$Anniversary_Date."','".$FName."','".$FlName."','".$Act_Ind."','".$InDate."','".$rsk."','".$Comm."','".$type."','".$Fllen."','".$Flformat."','".$PrName."','".$PRDate."','".$PrStep."','".$UD1."','".$UD2."','".$UD3."','".$UD4."','".$UD5."'),";
 						$i++;
 					}
 					else
@@ -684,7 +680,7 @@ if(isset($_POST["import-field-csv"])){
         }
 		if($counter==0)
 		{
-		    keep_last_good_copy(3);
+		    keep_last_good_copy();
 			$insert_query=substr($insert_query,0,strlen($insert_query)-1);
 			$result=$con->query($insert_query);
 			if($result)
@@ -704,6 +700,178 @@ if(isset($_POST["import-field-csv"])){
 
 
 
+
+if(isset($_POST["import-file-csv"])){
+    $data=array(
+		"status"=>0,
+		"errors"=>array(),
+		"file"=>'',
+	);
+    $fileName = $_FILES["file"]["tmp_name"];
+    if ($_FILES["file"]["size"] > 0) {
+        $file = fopen($fileName, "r");
+        $i=0; 
+    	$insert_query="insert into FileData(".$PRODUCT_HEADERS['File'].") values ";
+		$counter=0;
+        // $column_heading = '`user_type`, `membership_type_id`, `first_name`, `last_name`, `user_email`, `is_enabled`, `created_on`';      
+        while (($column = fgetcsv($file)) !== FALSE) {
+            if($i==0){
+            	$i=1;
+				if(strcasecmp(trim(implode(",",$column)),trim($PRODUCT_HEADERS['File']))!=0)
+				{
+					$data['errors'][]="Headers are not in correct order or format. The Correct order is as follows: <br>".$PRODUCT_HEADERS['File'];
+					$counter++;
+					break;
+				}
+           		continue;
+            }
+			$check_existence_query="select * from FileData where FileName='".mysqli_real_escape_string($con,$column[5])."';";
+			$result=$con->query($check_existence_query);
+			if($result and $result->num_rows!=0)
+			{
+				$data['errors'][]="Request Failed. No records were added or updated. Duplicate records found in CSV file. Please use the ‘Edit’ pages to update existing records and use the CSV file to upload new records.";
+				$counter++;
+				break;
+			}
+			else
+            {
+					if(trim($column[2])!="")
+					{
+						//if($column[2]!="INPUT" and $column[2]!="OUTPUT" and $column[2]!="PROC")
+					//	{
+						//	$errors[]="Error at Row $i,Column Class1:-Invalid Value: Only INPUT/OUTPUT/PROC is allowed";
+						//	$counter++;
+					//	}
+					//	else
+							$Cl1=mysqli_real_escape_string($con,$column[2]);
+					}
+					else
+					{
+						$errors[]="Error at Row $i,Column Class1:- Value is Required";
+						$counter++;
+					}
+					if(trim($column[3])!="")
+					{
+						$Cl2=mysqli_real_escape_string($con,$column[3]);
+					}
+					else
+					{
+						$errors[]="Error at Row $i,Column Class2:- Value is Required";
+						$counter++;
+					}
+					if(trim($column[4])!="")
+					{
+						//if($column[4]!="VENDOR" and $column[4]!="PROP" and $column[4]!="SHARED")
+					//	{
+						//	$errors[]="Error at Row $i,Column Class1:-Invalid Value: Only VENDOR/PROP/SHARED is allowed";
+						//	$counter++;
+					//	}
+					//	else
+							$Cl3=mysqli_real_escape_string($con,$column[4]);
+					}
+					else
+					{
+						$errors[]="Error at Row $i,Column Class3:- Value is Required";
+						$counter++;
+					}
+					if(trim($column[5])!="")
+					{
+						$FlName=mysqli_real_escape_string($con,$column[5]);
+					}
+					else
+					{
+						$errors[]="Error at Row $i,Column FileName:- Value is Required";
+						$counter++;
+					}
+					if(trim($column[6])!="")
+					{
+						$FlPath=mysqli_real_escape_string($con,$column[6]);
+					}
+					else
+					{
+						$errors[]="Error at Row $i,Column FilePath:- Value is Required";
+						$counter++;
+					}
+					if(trim($column[7])!="")
+					{
+						$Act_Ind=mysqli_real_escape_string($con,$column[7]);
+					}
+					else
+					{
+						$errors[]="Error at Row $i,Column Active_Indicator:- Value is Required";
+						$counter++;
+					}
+					if(trim($column[7])=="YES" and trim($column[8])=="")
+					{
+						$InDate="2100-12-31";
+					}
+					else if(trim($column[7])=="YES" and trim($column[8])!="")
+					{
+						$InDate=mysqli_real_escape_string($con,mysql_date($column[8]));
+					}
+					else if(trim($column[7])=="NO" and trim($column[8])!="")
+					{
+						$InDate=mysqli_real_escape_string($con,mysql_date($column[8]));
+					}
+					else
+					{
+						$errors[]="Error at Row $i,Column Inactive_Date:- Value is Required when Active_Indicator is 'NO'";
+						$counter++;
+					}
+					//if(trim(strtoupper($column[9]))!="HIGH" and trim(strtoupper($column[9]))!="CRITICAL" and trim(strtoupper($column[9]))!="LOW" and trim(strtoupper($column[9]))!="MEDIUM" and trim(strtoupper($column[9]))!="IGNORE")
+					//{
+						//$errors[]="Error at Row $i,Column Risk_Rating:- Invalid Value; Allowed Values:- High,Low,Critical,Medium,Ignore";
+						//$counter++;
+				//	}
+				//	else
+				//	{
+						$rsk=mysqli_real_escape_string($con,$column[9]);
+				//	}
+					$Comm=mysqli_real_escape_string($con,$column[10]);
+					if(trim($column[11])!="")
+					{
+						$Anniversary_Date=mysqli_real_escape_string($con,mysql_date($column[11]));;
+					}
+					else
+					{
+						$Anniversary_Date="NULL";
+					}
+					$UD1=mysqli_real_escape_string($con,$column[12]);
+					$UD2=mysqli_real_escape_string($con,$column[13]);
+					$UD3=mysqli_real_escape_string($con,$column[14]);
+					$UD4=mysqli_real_escape_string($con,$column[15]);
+					$UD5=mysqli_real_escape_string($con,$column[16]);
+					if($counter==0)
+					{
+						$insert_query.="('','','".$Cl1."','".$Cl2."','".$Cl3."','".$FlName."','".$FlPath."','".$Act_Ind."','".$InDate."','".$rsk."','".$Comm."','".$Anniversary_Date."','".$UD1."','".$UD2."','".$UD3."','".$UD4."','".$UD5."'),";
+						$i++;
+					}
+					else
+					{
+						$i++;
+						continue;
+					}
+				}
+        }
+		if($counter==0)
+		{
+		    keep_last_good_copy();
+			$insert_query=substr($insert_query,0,strlen($insert_query)-1);
+			$result=$con->query($insert_query);
+			if($result)
+			{
+				$data['status']=1;
+				UpdateDateTimeFields();
+			}
+			else
+			{
+			    $data['errors'][]=$con->error;
+			}
+		}
+    }
+    header('Content-type: application/json');
+    echo json_encode($data);
+}
 
 
 

@@ -12,7 +12,7 @@ else
 	echo "<center><h2>No Data Found in FieldData</h2></center>";
 	die();
 }
-$query_second="SELECT DISTINCT(Risk_Rating) from FieldData order by Risk_Rating";
+$query_second="SELECT DISTINCT(Risk_Rating) from FieldData where (Risk_Rating is not null and Risk_Rating!='') order by Risk_Rating";
 $result_second=$con->query($query_second);
 if($result_second and $result_second->num_rows!=0)
 {
@@ -23,7 +23,7 @@ else
 	echo "<center><h2>No Data Found in FileData</h2></center>";
 	die();
 }
-$query_cls1="SELECT distinct(FileName) from FileData";
+$query_cls1="SELECT distinct(FileName) from FileData where (FileName is not null and FileName!='')";
 $result_cls1=$con->query($query_cls1);
 if($result_cls1 and $result_cls1->num_rows!=0)
 {
@@ -34,7 +34,7 @@ else
 	echo "<center><h2>No Data Found in FileData</h2></center>";
 	die();
 }
-$query_cls3="SELECT distinct(Field_Type) from FieldData";
+$query_cls3="SELECT distinct(Field_Type) from FieldData where (Field_Type is not null and Field_Type!='')";
 $result_cls3=$con->query($query_cls3);
 if($result_cls3 and $result_cls3->num_rows!=0)
 {
@@ -55,8 +55,7 @@ else
     });
 </script>
 <div class="row">
-	<div class="col-sm-1"></div>
-	<div class="col-sm-11">
+	<div class="col-sm-12">
 	<center>
 		<h2>
 			Edit Field Data	
@@ -70,8 +69,8 @@ else
 					<?php 
 						while($row=$result_first->fetch_assoc())
 						{
-							echo "<option value=".$row['FieldName']." ";
-							if(isset($_GET['field']) and $_GET['field']==$row['FieldName'])
+							echo "<option value=".urlencode($row['FieldName'])." ";
+							if(isset($_GET['field']) and urldecode($_GET['field'])==$row['FieldName'])
 							{
 								echo "selected";
 							}
@@ -86,7 +85,7 @@ else
 <?php
 if(isset($_GET['field']))
 {
-	$query="SELECT count(*) from FieldData where FieldName='".mysqli_real_escape_string($con,$_GET['field'])."'";
+	$query="SELECT count(*) from FieldData where FieldName='".mysqli_real_escape_string($con,urldecode($_GET['field']))."'";
 	{
 		$result=$con->query($query);
 		if($result and $result->num_rows!=0)
@@ -95,7 +94,7 @@ if(isset($_GET['field']))
 		}
 		$count=$row_count['count(*)'];
 	}
-	$query="SELECT * from FieldData where FieldName='".mysqli_real_escape_string($con,$_GET['field'])."'";
+	$query="SELECT * from FieldData where FieldName='".mysqli_real_escape_string($con,urldecode($_GET['field']))."'";
 	//echo $query;
 	$result=$con->query($query);
 	if($result and $result->num_rows!=0)
@@ -104,8 +103,8 @@ if(isset($_GET['field']))
 	}
 ?>
 <div class="row" id="form-file">
-	<div class="col-sm-1"></div>
-	<div class="col-sm-11">
+	
+	<div class="col-sm-12">
 		  <ul class="nav nav-tabs nav-justified">
 			<li class="<?php if(isset($_GET['tab']) and $_GET['tab']=='1'){echo "active";}else if(!isset($_GET['tab'])){
 				echo "active";
@@ -121,8 +120,9 @@ if(isset($_GET['field']))
 			<h3>Field Information</h3>
 				<form class="update-field-form" action="JavaScript:void(0);" data-next="2">
 					<div class="form-group col-sm-6">
-							<label for="FileName">File Name :</label>
+							<label for="FileName">File Name:</label>
 							<select id="FileName" name="FileName" class="form-control" <?php if($count!=1){echo "disabled"; } ?> required>
+							     <?php if($count!=1){echo "<option value='' selected>Multiple Values Found</option>"; }?>
 							<option value=''>Select</option>
 								<?php 
 									while($row=$result_cls1->fetch_assoc())
@@ -138,16 +138,38 @@ if(isset($_GET['field']))
 							</select>
 					</div>
 					<div class="form-group col-sm-6">
-							<label for="Field_Type">Field Type :</label>
+							<label for="Field_Type">Field Type:</label>
 							<select id="Field_Type" name="Field_Type" class="form-control">
-							    <option value=''>Select</option>
-							    <option id='Number' value='Number' <?php if($row_data['Field_Type']=="Number"){echo "selected";}?>>Number</option>
-							    <option id='String' value='String' <?php if($row_data['Field_Type']=="String"){echo "selected";}?>>String</option>
+							    <option value='' selected>Select</option>
+							    <option value='Date' id="Date" <?php 
+							        if($row_data['Field_Type']=="Date")
+							        {
+							            echo "selected";
+							        }
+							    ?>>Date</option>
+							    <option value='Number' id="Number" <?php 
+							        if($row_data['Field_Type']=="Number")
+							        {
+							            echo "selected";
+							        }
+							    ?>>Number</option>
+							    <option value='String' id="String" <?php 
+							        if($row_data['Field_Type']=="String")
+							        {
+							            echo "selected";
+							        }
+							    ?>>String</option>
+							    <option value='Time' id="Time" <?php 
+							        if($row_data['Field_Type']=="Time")
+							        {
+							            echo "selected";
+							        }
+							    ?>>Time</option>
 							</select>
 					</div>
 					<div class="form-group col-sm-6">
 							<label for="FieldLength">Field Length:</label>
-							<input type="number" id="FieldLength" name="FieldLength" class="form-control" value="<?php echo htmlspecialchars($row_data['Field_Length']); ?>">
+							<input type="number" min="0" id="FieldLength" name="FieldLength" class="form-control" value="<?php echo htmlspecialchars($row_data['Field_Length']); ?>">
 					</div>
 					<div class="form-group col-sm-6">
 							<label for="FieldFormat">Field Format:</label>
@@ -166,21 +188,36 @@ if(isset($_GET['field']))
 			  <form class="update-field-form" data-next="3">
 					<div class="form-group col-sm-6">
 							<label for="Indate">Inactive_Date:</label>
-							<input type="text" id="Indate" name="Indate" class="form-control" required value="<?php echo htmlspecialchars(ui_date($row_data['Inactive_Date'])); ?>">
+						<input type="text" id="Indate" name="Indate" class="form-control" required value="<?php echo htmlspecialchars(ui_date($row_data['Inactive_Date'])); ?>" autocomplete="off" data-empty=<?php if(isset($row_data['Inactive_Date']) and $row_data['Inactive_Date']!=""){echo "off";}else{echo "on"; }?>>
 					</div>
 					<div class="form-group col-sm-6">
 							<label for="rsk_rating">Risk_Rating:</label>
 							<select id="rsk_rating" name="rsk_rating" class="form-control" >
-							    <option value=''>Select</option>
-							    <option id='Critical' value='Critical' <?php if($row_data['Risk_Rating']=="Critical"){echo "selected";}?>>Critical</option>
-							    <option id='High' value='High' <?php if($row_data['Risk_Rating']=="High"){echo "selected";}?>>High</option>
-							    <option id='Medium' value='Medium' <?php if($row_data['Risk_Rating']=="Medium"){echo "selected";}?>>Medium</option>
-							    <option id='Low' value='Low' <?php if($row_data['Risk_Rating']=="Low"){echo "selected";}?>>Low</option>
-							    <option id='High' value='High' <?php if($row_data['Risk_Rating']=="High"){echo "selected";}?>>High</option>
+							    <option value='' selected>Select</option>
+							     <option value='Critical' <?php if( ('Critical'==$row_data['Risk_Rating']))
+            							{
+            								echo "selected";
+            							}?>>Critical</option>
+							    <option value='High' <?php if( ('High'==$row_data['Risk_Rating']))
+            							{
+            								echo "selected";
+            							}?>>High</option>
+    							 <option value='Ignore' <?php if( ('Ignore'==$row_data['Risk_Rating']))
+            							{
+            								echo "selected";
+            							}?>>Ignore</option>
+    							 <option value='Low' <?php if( ('Low'==$row_data['Risk_Rating']))
+            							{
+            								echo "selected";
+            							}?>>Low</option>
+                                <option value='Medium' <?php if( ('Medium'==$row_data['Risk_Rating']))
+            							{
+            								echo "selected";
+            							}?>>Medium</option>
 							</select>
 					</div>
 					<div class="form-group col-sm-12">
-							<label for="field_comments">Comments :</label>
+							<label for="field_comments">Comments:</label>
 							<input type="text" id="field_comments" class="form-control" name="field_comments" value="<?php echo htmlspecialchars($row_data['Comments']); ?>">
 					</div>
 					<div class="form-group col-sm-6">
@@ -190,7 +227,7 @@ if(isset($_GET['field']))
 					<div class="form-group col-sm-12">
 					</div>
 					<div class="form-group col-sm-6">
-							<label for="act_indicator">Active_Indicator : <input type="checkbox" id="act_indicator" name="act_indicator" 
+							<label for="act_indicator">Active_Indicator: <input type="checkbox" id="act_indicator" name="act_indicator" 
 								<?php if($row_data['Active_Indicator']=="YES")
 								{
 									echo "Checked";	
@@ -210,16 +247,19 @@ if(isset($_GET['field']))
 			<h3>Prior Information</h3>
 				<form class="update-field-form" action="JavaScript:void(0);" data-next="4">
 					<div class="form-group col-sm-6">
-							<label for="PriorName">Prior Name :</label>
+							<label for="PriorName">Prior Name:</label>
 							<input type="text" id="PriorName" name="PriorName" class="form-control"  value="<?php echo htmlspecialchars($row_data['Prior_Name']); ?>">
 					</div>
 					<div class="form-group col-sm-6">
 							<label for="file_comments">Prior Name Date:</label>
-							<input type="text" id="PNdate" name="PNdate" class="form-control"  value="<?php echo htmlspecialchars($row_data['Prior_Name_Date']); ?>">
+							<input type="text" id="PNdate" name="PNdate" class="form-control"  value="<?php if($row_data['Prior_Name_Date']!='0000-00-00')
+							    {
+							     echo htmlspecialchars($row_data['Prior_Name_Date']);    
+							    }?>" autocomplete='off'>
 					</div>
 					<div class="form-group col-sm-6">
 							<label for="PROC_Step">PROC_Step:</label>
-							<input type="text" id="PROC_Step" name="PROC_Step" class="form-control"  value="<?php if($count==1){echo $row_data['PROC_Step'];} ?>" 
+							<input type="text" id="PROC_Step" name="PROC_Step" class="form-control"  value="<?php if($count==1){echo $row_data['PROC_Step'];}else{echo "Multiple Values Found";} ?>" 
 							<?php 
 								if($count>1)
 								{
@@ -240,7 +280,7 @@ if(isset($_GET['field']))
 			  <h3>User Defined</h3>
 			  <form class="update-field-form" data-next='4'>
 					<div class="form-group">
-							<label for="ud1">User Defined 1 :</label>
+							<label for="ud1">User Defined 1:</label>
 							<input type="text" id="ud1" class="form-control" name="ud1" value="<?php echo $row_data['User_Defined1']; ?>">
 					</div>
 					<div class="form-group">
@@ -272,4 +312,4 @@ if(isset($_GET['field']))
 <?php
 }
 ?>
-<?php require_once(dirname(__FILE__)."/footer.php"); ?>
+<?php require_once(dirname(__FILE__)."/footer.php"); ?> 

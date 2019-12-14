@@ -2,8 +2,7 @@
 include_once(dirname(__FILE__)."/header.php");
 ?>
 <div class="row">
-	<div class='col-sm-2'></div>
-	<div class="col-sm-10">
+	<div class="col-sm-12">
 		<center><h2>
 		Maintenance Reports<br>
 		Click on the following  to generate the reports

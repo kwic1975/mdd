@@ -19,6 +19,6 @@ if($res->num_rows){
 	<h1>Count</h1>
 	<h2><?php echo $count; ?></h2>
 	<h3>Count of FileNames in the FileData table that do not have a corresponding entry in Variable_Name in the table DictionaryData</h3>
-	<h3><a href="<?php echo SITE_URL;?>/reports.php">Back to Maintenance Reports</a></h3>
+	<h3><a class='back_link' href="<?php echo SITE_URL;?>/reports.php">Back to Maintenance Reports</a></h3>
 </center>
 <?php include_once(dirname(__FILE__)."/footer.php"); ?>

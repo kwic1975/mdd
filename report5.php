@@ -23,7 +23,7 @@ $res=$con->query($sql);
 			}
 		}
 		?>
-		<h3><a href="<?php echo SITE_URL;?>/reports.php">Back to Maintenance Reports</a></h3>
+		<h3><a class='back_link' href="<?php echo SITE_URL;?>/reports.php">Back to Maintenance Reports</a></h3>
 	</center>
 </div>
 <?php include_once(dirname(__FILE__)."/footer.php"); ?>

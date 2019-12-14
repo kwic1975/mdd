@@ -37,7 +37,17 @@ function update_act_date()
 	}
 	else
 	{
-		$('#Indate').attr('disabled',false);
+	    if($('#Indate').attr('data-empty')=="off")
+	    {
+	        var date=$('#Indate').attr('value');
+	        $("#Indate").datepicker("setDate", date);
+	        $('#Indate').attr('disabled',false);    
+	    }
+		else
+		{
+		    $('#Indate').attr('disabled',false);
+		    $('#Indate').val('');    
+		}
 	}
 }
 jQuery(document).ready(function(){
@@ -140,7 +150,7 @@ jQuery(document).ready(function(){
 			{
 				if(response.error==0)
 				{
-					window.location.href="edit-field.php?field="+Name+"&tab="+next;
+					window.location.href="edit-field.php?field="+encodeURIComponent(Name)+"&tab="+next;
 				}
 				else
 				{
@@ -168,7 +178,7 @@ jQuery(document).ready(function(){
     			//console.log(response);
     			if(response.error==0)
     			{
-    				window.location.href="edit-file.php?file="+Name+"&tab="+next;
+    				window.location.href="edit-file.php?file="+encodeURIComponent(Name)+"&tab="+next;
     			}
     			else
     			{
@@ -371,6 +381,54 @@ jQuery(document).ready(function(){
 			return false;
 		});
     
+     $(document).on('click','#import-file',function(){
+		var fileType = ".csv";
+		if($("#file").val()==''){
+				$('#error3').html("Please select CSV File");
+    			$('#error3').show();
+		}else{
+			var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:()])+(" + fileType + ")$");
+			if (!regex.test($("#file").val().toLowerCase())) {
+			   $('#error3').html("Invalid File. Upload only " + fileType + " Files.", "danger");
+    			$('#error3').show();
+			}
+			else{
+				$('#import-file').submit();
+			}
+		}
+		return false;
+		});
+		$(document).on('submit','#import-file-csv',function(){
+			var $form = jQuery("#import-file-csv");
+			var formData = new FormData($form[0]);
+			formData.append("import-file-csv","action");
+			$.ajax({
+				type: "POST",
+				url:"front_ajax.php",
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function(response){
+					if(response.status==1){
+						$('#error3').hide();
+    			    	$('#import-success').html("Imported Succesfully");
+    				    $('#import-success').show();
+					}
+					else{
+						var error_msg = "";
+    					jQuery.each(response.errors, function( index, error ) {
+    						error_msg += "<li>"+error+"</li>";
+    					});
+    					$('#import-success').hide();
+    					$('#error3').html(error_msg);
+    					$('#error3').show();
+					}
+				}
+			});
+			return false;
+		});
+
+    
     
     
     $(document).on('submit','#add-field-form',function(){
@@ -406,4 +464,12 @@ jQuery(document).ready(function(){
     	});
     	return false;
     });
+    var stickyOffset = $('.stick_to_top').offset().top;
+	$(window).scroll(function(){
+	  var sticky = $('.stick_to_top'),
+		  scroll = $(window).scrollTop();
+
+	  if (scroll >= stickyOffset) sticky.parent().addClass('fixed');
+	  else sticky.parent().removeClass('fixed');
+	});
 });

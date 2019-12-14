@@ -27,7 +27,7 @@ $res=$con->query($sql);
 	}
 	?>
 	<div class='col-sm-12'>
-		<h3><a href="<?php echo SITE_URL;?>/reports.php">Back to Maintenance Reports</a></h3>
+		<h3><a class='back_link' href="<?php echo SITE_URL;?>/reports.php">Back to Maintenance Reports</a></h3>
 	</div>
 </center>
 <?php include_once(dirname(__FILE__)."/footer.php"); ?>

@@ -112,8 +112,7 @@ include_once(dirname(__FILE__)."/site_config.php");
 		<div class='container'>
 			<?php if(isset($_SESSION['mdd'])){ ?>
 			<div class="row">
-				<div class="col-md-1 col-sm-12">
-				</div>
+			
 				<div class="col-md-4 col-sm-12 user-text">
 						Welcome <b><?php echo htmlspecialchars($_SESSION['mdd']['uname']); ?></b>
 						<br><a href="<?php echo SITE_URL;?>/landing-success.php">Home Page</a>

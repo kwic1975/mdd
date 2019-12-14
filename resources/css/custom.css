@@ -48,3 +48,6 @@ form
 /*.user-text li a:hover, .user-text li a:focus{*/
 /*    text-decoration: underline;*/
 /*}*/
+.centerTable{
+    width: 100%;
+}

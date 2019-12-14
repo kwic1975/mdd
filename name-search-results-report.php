@@ -8,8 +8,8 @@ if(!empty($_GET['name']) && !empty($_GET['type'])){
 	if($res->num_rows){
 		?>
 		<div class='row'>
-			<div class="col-md-1 col-sm-12"></div>
-			<div class='col-md-10 col-sm-12 table-responsive'>
+			
+			<div class='col-md-12 col-sm-12 table-responsive'>
 				<table class='table p-table'>
 					<tbody>
 						<tr>
@@ -38,7 +38,7 @@ if(!empty($_GET['name']) && !empty($_GET['type'])){
 				</table>
 			</div>
 		</div>
-		<div class="col-md-1 col-sm-12"></div>
+	
 	<?php 
 	}else{
 		?>

@@ -67,7 +67,7 @@ if(!empty($_GET['search-text'])){
 				}
 				?>
 				<h3>
-				<a href="<?php echo SITE_URL;?>/name-search.php">Back to Name Search</a>
+				<a class='back_link' href="<?php echo SITE_URL;?>/name-search.php">Back to Name Search</a>
 				</h3>
 			</center>
 		</div>

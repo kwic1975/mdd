@@ -14,7 +14,7 @@ else
 }
 if(isset($_GET['type']))
 {
-	$q1="SELECT distinct(Variable_Name) from DictionaryData where Variable_Name_Type='".mysqli_real_escape_string($con,$_GET['type'])."'";
+	$q1="SELECT distinct(Variable_Name) from DictionaryData where Variable_Name_Type='".mysqli_real_escape_string($con,urldecode($_GET['type']))."' order by Variable_Name";
 	$result=$con->query($q1);
 	if($result and $result->num_rows!=0)
 	{
@@ -27,18 +27,17 @@ if(isset($_GET['type']))
 		<h2>
 			Edit Dictionary
 		</h2>
-	    </center>
-	    <div class='col-sm-1'></div>
+	</center>
 		<form class="form-inline">
-			<div class="form-group col-sm-5">
+			<div class="form-group col-sm-6">
 				<label for="variable_type">Variable_Name_Type:</label>
 				<select id="variable_type" class="form-control">
 					<option disabled selected>-Select A Variable Type-</option>
 					<?php 
 						while($row=$result_first->fetch_assoc())
 						{
-							echo "<option value=".$row['variable_name_type']." ";
-							if(isset($_GET['type']) and $_GET['type']==$row['variable_name_type'])
+							echo "<option value=".urlencode($row['variable_name_type'])." ";
+							if(isset($_GET['type']) and urldecode($_GET['type'])==$row['variable_name_type'])
 							{
 								echo "selected";
 							}
@@ -54,8 +53,8 @@ if(isset($_GET['type']))
 					<?php
 						while($row=$result->fetch_assoc())
 						{
-							echo "<option value=".$row['Variable_Name']." ";
-							if(isset($_GET['var']) and $_GET['var']==$row['Variable_Name'])
+							echo "<option value=".urlencode($row['Variable_Name'])." ";
+							if(isset($_GET['var']) and urldecode($_GET['var'])==$row['Variable_Name'])
 							{
 								echo "selected";
 							}
@@ -69,7 +68,7 @@ if(isset($_GET['type']))
 <?php
 if(isset($_GET['type']) and isset($_GET['var']))
 {
-	$query="SELECT * from DictionaryData where Variable_Name_Type='".mysqli_real_escape_string($con,$_GET['type'])."' and Variable_Name='".mysqli_real_escape_string($con,$_GET['var'])."'";
+	$query="SELECT * from DictionaryData where Variable_Name_Type='".mysqli_real_escape_string($con,urldecode($_GET['type']))."' and Variable_Name='".mysqli_real_escape_string($con,urldecode($_GET['var']))."'";
 	$result=$con->query($query);
 	if($result and $result->num_rows!=0)
 	{
@@ -79,8 +78,8 @@ if(isset($_GET['type']) and isset($_GET['var']))
 <div class="alert alert-danger alert-dismissible" role="alert" id="error" style="display:none; margin-top:20px;">
 </div>
 <div class="row" id="form-dict">
-	<div class='col-sm-1'></div>
-	<div class="col-sm-11">
+	
+	<div class="col-sm-12">
 		  <ul class="nav nav-tabs nav-justified">
 			<li class="<?php if(isset($_GET['tab']) and $_GET['tab']=='1'){echo "active";}else if(!isset($_GET['tab'])){
 				echo "active";

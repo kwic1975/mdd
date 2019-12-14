@@ -1,3 +1,13 @@
+.full-width-table{
+    width:100%;
+}
+a.back_link, a.back_link:active, a.back_link:visited{
+    color: #337ab7;
+    font-size: 20px;
+}
+.search-form{
+    text-align:center;
+}
 .restore_cont{
 	padding: 10px 0px;
 	display: inline-block;
@@ -125,7 +135,7 @@ th.double {
 	width: 14%;
 }
 }
-#Class2,#FileName,#Kword,#X_Ref,#See_also,#PriorName,#PROC_Step
+#FileName,#Kword,#X_Ref,#See_also,#PriorName,#PROC_Step
 {
 	text-transform: uppercase;
 }

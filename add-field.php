@@ -3,8 +3,8 @@ include_once(dirname(__FILE__)."/header.php");
 Check_permission();
 ?>
 <div class="row" id="form-dict">
-	<div class='col-sm-1'></div>
-	<div class="col-sm-11">
+	
+	<div class="col-sm-12">
 		<center><h3>Add contents – FieldName</h3></center>
 		<div class='alert alert-danger' id='error1'></div>
 		<form id="add-field-form">

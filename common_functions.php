@@ -10,13 +10,13 @@ function Check_if_Admin()
 		}
 	}
 }
-function restore_last_good_copy($table_id){
+function restore_last_good_copy(){
 	$data=array(
 		"status"=>0,
 		"errors"=>array()
 	);
 	global $con;
-	if($table_id==1){
+	// if($table_id==1){
 		// DictionaryData
 		$del="delete from DictionaryData";
 		$res=$con->query($del);
@@ -24,12 +24,12 @@ function restore_last_good_copy($table_id){
 			$insert="insert into DictionaryData select * from DictionaryData_lgc";
 			$res=$con->query($insert);
 			if($res){
-				$data['status']=1;
+				// $data['status']=1;
 			}else{
 				$data['errors'][] = $con->error;
 			}
 		}
-	}elseif($table_id==2){
+	// }elseif($table_id==2){
 		// FileData
 		$del="delete from FileData";
 		$res=$con->query($del);
@@ -37,12 +37,12 @@ function restore_last_good_copy($table_id){
 			$insert="insert into FileData select * from FileData_lgc";
 			$res=$con->query($insert);
 			if($res){
-				$data['status']=1;
+				// $data['status']=1;
 			}else{
 				$data['errors'][] = $con->error;
 			}
 		}
-	}elseif($table_id==3){
+	// }elseif($table_id==3){
 		// FieldData
 		$del="delete from FieldData";
 		$res=$con->query($del);
@@ -50,23 +50,26 @@ function restore_last_good_copy($table_id){
 			$insert="insert into FieldData select * from FieldData_lgc";
 			$res=$con->query($insert);
 			if($res){
-				$data['status']=1;
+				// $data['status']=1;
 			}else{
 				$data['errors'][] = $con->error;
 			}
 		}
-	}else{
-		$data['errors'][] = "Invalid input";
+	// }else{
+		// $data['errors'][] = "Invalid input";
+	// }
+	if(empty($data['errors'])){
+		$data['status']=1;
 	}
 	return $data;
 }
-function keep_last_good_copy($table_id){
+function keep_last_good_copy(){
 	$data=array(
 		"status"=>0,
 		"errors"=>array()
 	);
 	global $con;
-	if($table_id==1){
+	// if($table_id==1){
 		// DictionaryData
 		$del="delete from DictionaryData_lgc";
 		$res=$con->query($del);
@@ -74,12 +77,12 @@ function keep_last_good_copy($table_id){
 			$insert="insert into DictionaryData_lgc select * from DictionaryData";
 			$res=$con->query($insert);
 			if($res){
-				$data['status']=1;
+				//$data['status']=1;
 			}else{
 				$data['errors'][] = $con->error;
 			}
 		}
-	}elseif($table_id==2){
+	// }elseif($table_id==2){
 		// FileData
 		$del="delete from FileData_lgc";
 		$res=$con->query($del);
@@ -87,12 +90,12 @@ function keep_last_good_copy($table_id){
 			$insert="insert into FileData_lgc select * from FileData";
 			$res=$con->query($insert);
 			if($res){
-				$data['status']=1;
+				//$data['status']=1;
 			}else{
 				$data['errors'][] = $con->error;
 			}
 		}
-	}elseif($table_id==3){
+	// }elseif($table_id==3){
 		// FieldData
 		$del="delete from FieldData_lgc";
 		$res=$con->query($del);
@@ -100,13 +103,16 @@ function keep_last_good_copy($table_id){
 			$insert="insert into FieldData_lgc select * from FieldData";
 			$res=$con->query($insert);
 			if($res){
-				$data['status']=1;
+				//$data['status']=1;
 			}else{
 				$data['errors'][] = $con->error;
 			}
 		}
-	}else{
-		$data['errors'][] = "Invalid input";
+	// }else{
+		// $data['errors'][] = "Invalid input";
+	// }
+	if(empty($data['errors'])){
+		$data['status']=1;
 	}
 	return $data;
 }

@@ -3,8 +3,8 @@ include_once(dirname(__FILE__)."/header.php");
 Check_permission();
 ?>
 <div class="row" id="form-dict">
-	<div class='col-sm-1'></div>
-	<div class="col-sm-11">
+	
+	<div class="col-sm-12">
 		<center><h3>Add contents – FileName</h3></center>
 		<div class='alert alert-danger' id='error1'></div>
 		<form id="add-file-form">
@@ -17,6 +17,19 @@ Check_permission();
 				<input type="submit" class="btn btn-success" value="Save and Next" name="save_step">
 			</div>
 		</form>
+		<div class='restore_cont'>
+			<div class='restore_text'>Import CSV</div>
+			<div class='alert alert-danger' id='error3' style="display:none;"></div>
+		    <div class='alert alert-success' id='import-success' style="display:none;"></div>
+		    <form id="import-file-csv" action="JavaScript:void(0);" class="form-inline">
+		         <div class="form-group col-sm-6">
+					<input type="file" name="file" id="file">
+		    	</div>
+		    	<div class="form-group col-sm-6">
+	                <button class="btn btn-primary" id="import-file">Import</button>
+		    	</div>
+	    	</form>
+		</div>
 		<?php 
 		if($_SESSION['mdd']['utype']=="admin"){
 		?>
