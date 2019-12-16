@@ -4,7 +4,7 @@ if($_GET['type']=="file")
 {
 	if($_GET['name']=="vpro_output.csv")
 	{
-		$query="SELECT a.Variable_Name, a.Business_Definition, a.Keyword, b.Field_Type,b.Field_Length,b.Field_Format
+		$query="SELECT a.Variable_Name, a.Business_Definition, a.Keyword, b.Field_Type,b.Field_Length,b.Field_Format,a.Update_Date,a.Update_Time
 			FROM DictionaryData a INNER JOIN  FieldData b ON a.Variable_Name=b.FieldName
 			WHERE b.FileName='VPRO2_OUTPUT.CSV'
 			ORDER BY a.Variable_Name;";
@@ -13,7 +13,7 @@ if($_GET['type']=="file")
 	}
 	elseif($_GET['name']=="graph_spx_daily.csv")
 	{
-		$query="SELECT a.Variable_Name, a.Business_Definition, a.Keyword, b.Field_Type,b.Field_Length,b.Field_Format
+		$query="SELECT a.Variable_Name, a.Business_Definition, a.Keyword, b.Field_Type,b.Field_Length,b.Field_Format,a.Update_Date,a.Update_Time
 			FROM DictionaryData a INNER JOIN  FieldData b ON a.Variable_Name=b.FieldName
 			WHERE b.FileName='GRAPH_SPX_DAILY.CSV'
 			ORDER BY a.Variable_Name;";
@@ -65,6 +65,8 @@ if($_GET['type']=="file")
 							<td><?php echo $row['Field_Format']; ?></td>
 						</tr>	
 						<?php
+						    $UD= $row['Update_Date'];
+						    $UT= $row['Update_Time'];
 						}
 					}
 					else
@@ -81,6 +83,11 @@ if($_GET['type']=="file")
 					<th>Field_Format</th>						
 				</tr>
 			</table>
+	    <div class='center'>
+		    <h3>
+			    Update Date: <?php echo ui_date($UD); ?> and Update Time: <?php echo ui_time($UT); ?>
+		    </h3>
+	    </div>	
 	</div>
 </div>
 	<?php

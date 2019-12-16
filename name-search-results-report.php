@@ -28,8 +28,8 @@ if(!empty($_GET['name']) && !empty($_GET['type'])){
 								<td><?php echo (!empty($row['Variable_Name_Type']))?$row['Variable_Name_Type']:''; ?></td>
 								<td><?php echo (!empty($row['Business_Definition']))?$row['Business_Definition']:''; ?></td>
 								<td><?php echo (!empty($row['Keyword']))?$row['Keyword']:''; ?></td>
-								<td><?php echo (!empty($row['Update_Date']))?$row['Update_Date']:''; ?></td>
-								<td><?php echo (!empty($row['Update_Time']))?$row['Update_Time']:''; ?></td>
+								<td><?php echo (!empty($row['Update_Date']))?ui_date($row['Update_Date']):''; ?></td>
+								<td><?php echo (!empty($row['Update_Time']))?ui_time($row['Update_Time']):''; ?></td>
 							</tr>
 						<?php 
 						}

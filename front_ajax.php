@@ -69,7 +69,7 @@ if(isset($_POST['action']) and $_POST['action']=="UpdateFile")
 		else
 		{
 			$Active="NO";
-			$Inactive_Date="CURDATE()";
+			$Inactive_Date=mysql_date(date("Y/m/d"));
 		}
 		$query="UPDATE FileData SET Inactive_Date='".$Inactive_Date."',Risk_Rating='".mysqli_real_escape_string($con,$_POST['rsk_rating'])."',Comments='".mysqli_real_escape_string($con,$_POST['file_comments'])."',Anniversary_Date='".mysql_date(mysqli_real_escape_string($con,$_POST['Anndate']))."',Active_Indicator='".mysqli_real_escape_string($con,$Active)."' where FileName='".mysqli_real_escape_string($con,urldecode($_POST['file']))."'";
 		$res=$con->query($query);
@@ -275,12 +275,12 @@ if(isset($_POST['action']) and $_POST['action']=="UpdateField")
 		if(isset($_POST['act_indicator']) and $_POST['act_indicator']=='on')
 		{
 			$Active="YES";
-			$Inactive_Date=mysqli_real_escape_string($con,mysql_date($_POST['Indate']));
+			$Inactive_Date=mysql_date($_POST['Indate']);
 		}
 		else
 		{
 			$Active="NO";
-			$Inactive_Date="CURDATE()";
+			$Inactive_Date=mysql_date(date("Y/m/d"));
 		}
 		$query="UPDATE FieldData SET Inactive_Date='".$Inactive_Date."',Risk_Rating='".mysqli_real_escape_string($con,$_POST['rsk_rating'])."',Comments='".mysqli_real_escape_string($con,$_POST['field_comments'])."',Anniversary_Date='".mysqli_real_escape_string($con,mysql_date($_POST['Anndate']))."',Active_Indicator='".mysqli_real_escape_string($con,$Active)."' where FieldName='".mysqli_real_escape_string($con,urldecode($_POST['field']))."'";
 		$res=$con->query($query);
@@ -737,12 +737,6 @@ if(isset($_POST["import-file-csv"])){
             {
 					if(trim($column[2])!="")
 					{
-						//if($column[2]!="INPUT" and $column[2]!="OUTPUT" and $column[2]!="PROC")
-					//	{
-						//	$errors[]="Error at Row $i,Column Class1:-Invalid Value: Only INPUT/OUTPUT/PROC is allowed";
-						//	$counter++;
-					//	}
-					//	else
 							$Cl1=mysqli_real_escape_string($con,$column[2]);
 					}
 					else
@@ -761,12 +755,6 @@ if(isset($_POST["import-file-csv"])){
 					}
 					if(trim($column[4])!="")
 					{
-						//if($column[4]!="VENDOR" and $column[4]!="PROP" and $column[4]!="SHARED")
-					//	{
-						//	$errors[]="Error at Row $i,Column Class1:-Invalid Value: Only VENDOR/PROP/SHARED is allowed";
-						//	$counter++;
-					//	}
-					//	else
 							$Cl3=mysqli_real_escape_string($con,$column[4]);
 					}
 					else

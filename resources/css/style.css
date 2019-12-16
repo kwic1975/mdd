@@ -1,6 +1,10 @@
 .full-width-table{
     width:100%;
 }
+.center-form
+{
+    display: inline-block;
+}
 a.back_link, a.back_link:active, a.back_link:visited{
     color: #337ab7;
     font-size: 20px;

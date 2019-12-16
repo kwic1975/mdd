@@ -4,9 +4,9 @@ include_once(dirname(__FILE__)."/header.php");
 ?>
 <div class='row report_cont'>
 	
-	<div class='col-sm-12'>
+	<div class='col-sm-12 text-center'>
 		<h3><center>Report to list all FieldNames, Business_Definitions for a drop-down list of FileNames</center></h3>
-		<form id="SelectFileName">
+		<form id="SelectFileName" class="center-form">
 			<select class='form-control p-select' name='filename'>
 				<option value=''>Select FileName</option>
 				<?php 
@@ -38,7 +38,6 @@ include_once(dirname(__FILE__)."/header.php");
 				</thead>
 				<tbody>
 					<?php 
-					// $sql="SELECT Variable_Name,Variable_Name_Type, Business_Definition, Keyword, b.Update_Date, b.Update_Time FROM DictionaryData a, FileData b WHERE a.Variable_Name='".mysqli_real_escape_string($con,$_GET['filename'])."' AND a.Variable_Name_Type='FILE'";
 					$sql="SELECT a.Variable_Name,a.Variable_Name_Type, a.Business_Definition, a.Keyword, a.Update_Date, a.Update_Time FROM DictionaryData a WHERE a.Variable_Name IN (SELECT DISTINCT FieldName FROM FieldData WHERE FileName='".mysqli_real_escape_string($con,$_GET['filename'])."')";
 					$res=$con->query($sql);
 					if($res->num_rows){
@@ -49,8 +48,8 @@ include_once(dirname(__FILE__)."/header.php");
 								<td><?php echo $row['Variable_Name_Type']; ?></td>
 								<td><?php echo $row['Business_Definition']; ?></td>
 								<td><?php echo $row['Keyword']; ?></td>
-								<td><?php echo $row['Update_Date']; ?></td>
-								<td><?php echo $row['Update_Time']; ?></td>
+								<td><?php echo ui_date($row['Update_Date']); ?></td>
+								<td><?php echo ui_time($row['Update_Time']); ?></td>
 							</tr>
 						<?php 
 						}

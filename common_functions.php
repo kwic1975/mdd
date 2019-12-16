@@ -1,4 +1,5 @@
 <?php
+
 function Check_if_Admin()
 {
 	if(isset($_SESSION['mdd']))
@@ -177,6 +178,12 @@ function ui_date($date_format){
 			$newDate = date("m/d/Y", strtotime($date_format));
 			return substr($newDate,0,10);
 		}
+	}
+}
+function ui_time($time24hour){
+	// 24-hour time to 12 time 
+	if($time24hour!=""){
+		return $ui_time  = date("H:i:s", strtotime($time24hour));
 	}
 }
 function mysql_time($time12hour){
