@@ -132,7 +132,7 @@ if(isset($_GET['type']) and isset($_GET['var']))
 			  <form class="update-dict-form" data-next="4">
 					<div class="form-group col-sm-6">
 							<label for="Kword">Keyword :</label>
-							<input type="text" id="Kword" name="Kword" class="form-control" required value="<?php if(isset($row_data['Keyword'])){echo htmlspecialchars($row_data['Keyword']);}?>"> 
+							<input type="text" id="Kword" name="Kword" class="form-control"  value="<?php if(isset($row_data['Keyword'])){echo htmlspecialchars($row_data['Keyword']);}?>"> 
 					</div>
 					<div class="form-group col-sm-6">
 							<label for="Ref">Reference:</label>
